@@ -8,6 +8,7 @@ use Airline\Airline;
 use Airport\Airport;
 use DateInterval;
 use DateTimeInterface;
+use Flight\Exception\DepartureArrivalException;
 use InvalidArgumentException;
 
 class DirectFlight
@@ -57,7 +58,7 @@ class DirectFlight
         Airline $airline)
     {
         if ($departureDateTime >= $arrivalDateTime) {
-            throw new InvalidArgumentException('Departure cannot be after arrival');
+            throw new DepartureArrivalException('Departure cannot be after arrival');
         }
 
         $this->referenceID = $referenceID;
