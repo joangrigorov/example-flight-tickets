@@ -12,4 +12,14 @@ class AirportTest extends TestCase
 
         new Airport('InvalidIataCode');
     }
+
+    public function testShouldAssertFalseWhenAirportsDoNotMatch()
+    {
+        self::assertFalse((new Airport('SOF'))->equals(new Airport('LHX')));
+    }
+
+    public function testShouldAssertTrueWhenAirportsDoNotMatch()
+    {
+        self::assertTrue((new Airport('SOF'))->equals(new Airport('SOF')));
+    }
 }
