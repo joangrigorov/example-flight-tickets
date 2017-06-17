@@ -13,5 +13,15 @@
             "name": "Yoan-Alexander Grigorov",
             "email": "joan.grigorov@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "": "test/"
+        }
+    }
 }
