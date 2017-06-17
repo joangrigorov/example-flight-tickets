@@ -1,0 +1,4 @@
+#!/bin/bash
+BASEDIR=$(dirname .)
+cd $BASEDIR
+docker run --rm --interactive --tty --volume $PWD:/app --user 1000 phpunit/phpunit $@

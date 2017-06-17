@@ -1,0 +1,17 @@
+{
+    "name": "sasquatch-mc/example-flight-tickets",
+    "description": "Demo code",
+    "type": "project",
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2"
+    },
+    "authors": [
+        {
+            "name": "Yoan-Alexander Grigorov",
+            "email": "joan.grigorov@gmail.com"
+        }
+    ]
+}
