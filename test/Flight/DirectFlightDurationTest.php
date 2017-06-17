@@ -7,6 +7,7 @@ use Airline\Airline;
 use Airport\Airport;
 use DateTimeImmutable;
 use DateTimeZone;
+use Flight\Exception\DepartureArrivalException;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
@@ -69,6 +70,26 @@ class DirectFlightDurationTest extends TestCase
         self::assertEquals(0, $actualInterval->y);
         self::assertEquals(0, $actualInterval->d);
         self::assertEquals(false, $actualInterval->invert);
+    }
+
+    public function testShouldThrowExceptionWhenDurationIsInverted()
+    {
+        /** @var ReferenceID $referenceIDMock */
+        /** @var Airport $airportMock */
+        /** @var SeatMap $seatMapMock */
+        /** @var Airline $airlineMock */
+        $referenceIDMock = $this->mock(ReferenceID::class);
+        $airportMock = $this->mock(Airport::class);
+        $seatMapMock = $this->mock(SeatMap::class);
+        $airlineMock = $this->mock(Airline::class);
+
+        $departureDT = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Amsterdam'));
+        $arrivalDT = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Sofia'));
+
+        $this->expectException(DepartureArrivalException::class);
+
+        new DirectFlight(
+            $referenceIDMock, $airportMock, $airportMock, $departureDT, $arrivalDT, $seatMapMock, $airlineMock);
     }
 
     /**
