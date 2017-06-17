@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Flight\Exception;
 
-class DepartureArrivalException
+use InvalidArgumentException;
+
+class DepartureArrivalException extends InvalidArgumentException
 {
 
 }

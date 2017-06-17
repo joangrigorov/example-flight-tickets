@@ -8,6 +8,7 @@ use Airline\Airline;
 use Airport\Airport;
 use DateInterval;
 use DateTimeInterface;
+use InvalidArgumentException;
 
 class DirectFlight
 {
@@ -55,6 +56,10 @@ class DirectFlight
         SeatMap $seatMap,
         Airline $airline)
     {
+        if ($departureDateTime >= $arrivalDateTime) {
+            throw new InvalidArgumentException('Departure cannot be after arrival');
+        }
+
         $this->referenceID = $referenceID;
         $this->outboundAirport = $outboundAirport;
         $this->inboundAirport = $inboundAirport;
