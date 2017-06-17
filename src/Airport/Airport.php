@@ -5,6 +5,8 @@ namespace Airport;
 
 class Airport
 {
+    private const VALIDATION_PATTERN = '/^[A-Z]{3}$/';
+
     /**
      * @var string
      */
@@ -12,7 +14,7 @@ class Airport
 
     public function __construct(string $iataCode)
     {
-        if (!preg_match('/^[A-Z]{3}$/', $iataCode)) {
+        if (!preg_match(self::VALIDATION_PATTERN, $iataCode)) {
             throw new Exception\InvalidIATACodeException("'{$iataCode}' is invalid airport IATA code");
         }
 
