@@ -9,6 +9,7 @@ use Airport\Airport;
 use DateInterval;
 use DateTimeInterface;
 use Flight\Exception\DepartureArrivalException;
+use Flight\Exception\SameAirportException;
 use InvalidArgumentException;
 
 class DirectFlight
@@ -57,6 +58,10 @@ class DirectFlight
         SeatMap $seatMap,
         Airline $airline)
     {
+        if ($inboundAirport->equals($outboundAirport)) {
+            throw new SameAirportException('Outbound and inbound airports cannot be the same');
+        }
+
         if ($departureDateTime >= $arrivalDateTime) {
             throw new DepartureArrivalException('Departure cannot be after arrival');
         }

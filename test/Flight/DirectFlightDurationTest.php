@@ -7,15 +7,17 @@ use Airline\Airline;
 use Airport\Airport;
 use DateTimeImmutable;
 use DateTimeZone;
+use FastMockTrait;
 use Flight\Exception\DepartureArrivalException;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
 
 /**
  * Tests durations between departure and arrival
  */
 class DirectFlightDurationTest extends TestCase
 {
+    use FastMockTrait;
+
     public function testShouldReturnDurationWithinSameTimezone()
     {
         /** @var ReferenceID $referenceIDMock */
@@ -90,14 +92,5 @@ class DirectFlightDurationTest extends TestCase
 
         new DirectFlight(
             $referenceIDMock, $airportMock, $airportMock, $departureDT, $arrivalDT, $seatMapMock, $airlineMock);
-    }
-
-    /**
-     * @param string $className
-     * @return PHPUnit_Framework_MockObject_MockObject
-     */
-    private function mock(string $className): PHPUnit_Framework_MockObject_MockObject
-    {
-        return $this->getMockBuilder($className)->disableOriginalConstructor()->getMock();
     }
 }
