@@ -12,7 +12,7 @@ use Flight\Exception\DepartureArrivalException;
 use Flight\Exception\SameAirportException;
 use InvalidArgumentException;
 
-class DirectFlight
+class DirectFlight implements Flight
 {
     /**
      * @var ReferenceID
@@ -77,6 +77,16 @@ class DirectFlight
 
     public function duration(): DateInterval
     {
-        return $this->departureDateTime->diff($this->arrivalDateTime);
+        return $this->intervalBetween($this);
+    }
+
+    public function intervalBetween(self $flight): DateInterval
+    {
+        return $this->departureDateTime->diff($flight->arrivalDateTime);
+    }
+
+    public function hasDateTimeOverlap(DirectFlight $directFlight): bool
+    {
+        return $this->arrivalDateTime > $directFlight->departureDateTime;
     }
 }
