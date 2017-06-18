@@ -13,6 +13,12 @@ class AirportTest extends TestCase
         new Airport('InvalidIataCode');
     }
 
+    public function testShouldThrowNotThrowExceptionWhenIataCodeIsValid()
+    {
+        $arline = new Airport('SOF');
+        self::assertInstanceOf(Airport::class, $arline);
+    }
+
     public function testShouldAssertFalseWhenAirportsDoNotMatch()
     {
         self::assertFalse((new Airport('SOF'))->equals(new Airport('LHX')));
