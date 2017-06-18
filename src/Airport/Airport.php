@@ -25,4 +25,9 @@ class Airport
     {
         return $airport->iataCode === $this->iataCode;
     }
+
+    public function toString(): string
+    {
+        return $this->iataCode;
+    }
 }

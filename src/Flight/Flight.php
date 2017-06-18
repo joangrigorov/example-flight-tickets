@@ -10,4 +10,6 @@ interface Flight
     public function duration(): DateInterval;
 
     public function getUnitPrice(): Price;
+
+    public function toArray(): array;
 }

@@ -30,4 +30,13 @@ class Passenger
         $this->name = $name;
         $this->age = $age;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'title' => $this->title->toString(),
+            'name' => $this->name->toString(),
+            'age' => $this->age->toYears(),
+        ];
+    }
 }

@@ -1,0 +1,4 @@
+#!/bin/bash
+BASEDIR=$(dirname .)
+cd $BASEDIR
+docker run --rm --interactive --tty --volume $PWD:/app -w=/app --user 1000 php:7.1-cli php $@

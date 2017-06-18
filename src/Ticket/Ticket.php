@@ -43,4 +43,14 @@ class Ticket
 
         return $ticketPrice;
     }
+
+    public function getFlightsTable(): array
+    {
+        $table = [];
+        foreach ($this->flights as $flight) {
+            $table[] = $flight->toArray();
+        }
+
+        return $table;
+    }
 }

@@ -21,4 +21,16 @@ class Passengers extends ArrayObject
 
         parent::__construct($passengers);
     }
+
+    public function toArray(): array
+    {
+        $data = [];
+
+        /** @var Passenger $passenger */
+        foreach ($this as $passenger) {
+            $data[] = $passenger->toArray();
+        }
+
+        return $data;
+    }
 }

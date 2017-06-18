@@ -94,4 +94,64 @@ class DirectFlight implements Flight
     {
         return $this->unitPrice;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'ref.id' => $this->getReferenceID()->toString(),
+            'from' => $this->outboundAirport->toString(),
+            'to' => $this->inboundAirport->toString(),
+            'departure' => $this->departureDateTime->format('r'),
+            'arrival' => $this->arrivalDateTime->format('r'),
+            'duration' => $this->duration()->format('%h hours and %i minutes'),
+        ];
+    }
+
+    /**
+     * @return ReferenceID
+     */
+    public function getReferenceID(): ReferenceID
+    {
+        return $this->referenceID;
+    }
+
+    /**
+     * @return Airport
+     */
+    public function getOutboundAirport(): Airport
+    {
+        return $this->outboundAirport;
+    }
+
+    /**
+     * @return Airport
+     */
+    public function getInboundAirport(): Airport
+    {
+        return $this->inboundAirport;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getDepartureDateTime(): DateTimeInterface
+    {
+        return $this->departureDateTime;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getArrivalDateTime(): DateTimeInterface
+    {
+        return $this->arrivalDateTime;
+    }
+
+    /**
+     * @return Airline
+     */
+    public function getAirline(): Airline
+    {
+        return $this->airline;
+    }
 }

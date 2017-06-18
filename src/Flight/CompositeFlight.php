@@ -62,4 +62,16 @@ class CompositeFlight implements Flight
     {
         return $this->unitPrice;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'ref.id' => $this->initialFlight()->getReferenceID()->toString(),
+            'from' => $this->initialFlight()->getOutboundAirport()->toString(),
+            'to' => $this->finalFlight()->getInboundAirport()->toString(),
+            'departure' => $this->initialFlight()->getDepartureDateTime()->format('r'),
+            'arrival' => $this->finalFlight()->getArrivalDateTime()->format('r'),
+            'duration' => $this->duration()->format('%h hours and %i minutes'),
+        ];
+    }
 }
