@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Flight;
 
-use Aircraft\SeatMap;
 use Airline\Airline;
 use Airport\Airport;
 use DateTimeImmutable;
@@ -61,17 +60,15 @@ class CompositeFlightDurationTest extends TestCase
     {
         /** @var ReferenceID $referenceIDMock */
         /** @var Airport $airportMock */
-        /** @var SeatMap $seatMapMock */
         /** @var Airline $airlineMock */
         /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
         $airportMock = $this->mock(Airport::class);
-        $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
         $priceMock = $this->priceMock();
 
         return new DirectFlight(
-            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $seatMapMock, $airlineMock, $priceMock);
+            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $airlineMock, $priceMock);
     }
 
     /**

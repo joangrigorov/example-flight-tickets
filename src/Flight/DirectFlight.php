@@ -40,11 +40,6 @@ class DirectFlight implements Flight
     private $arrivalDateTime;
 
     /**
-     * @var SeatMap
-     */
-    private $seatMap;
-
-    /**
      * @var Airline
      */
     private $airline;
@@ -60,7 +55,6 @@ class DirectFlight implements Flight
         Airport $inboundAirport,
         DateTimeInterface $departureDateTime,
         DateTimeInterface $arrivalDateTime,
-        SeatMap $seatMap,
         Airline $airline,
         Price $unitPrice)
     {
@@ -77,7 +71,6 @@ class DirectFlight implements Flight
         $this->inboundAirport = $inboundAirport;
         $this->departureDateTime = $departureDateTime;
         $this->arrivalDateTime = $arrivalDateTime;
-        $this->seatMap = $seatMap;
         $this->airline = $airline;
         $this->unitPrice = $unitPrice;
     }

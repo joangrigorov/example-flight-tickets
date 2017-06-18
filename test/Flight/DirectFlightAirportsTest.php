@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Flight;
 
-use Aircraft\SeatMap;
 use Airline\Airline;
 use Airport\Airport;
 use DateTimeImmutable;
@@ -22,13 +21,11 @@ class DirectFlightAirportsTest extends TestCase
         $this->expectException(Exception\SameAirportException::class);
 
         /** @var ReferenceID $referenceIDMock */
-        /** @var SeatMap $seatMapMock */
         /** @var Airline $airlineMock */
         /** @var DateTimeInterface $departureDTMock */
         /** @var DateTimeInterface $arrivalDTMock */
         /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
-        $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
         $departureDTMock = $this->mock(DateTimeImmutable::class);
         $arrivalDTMock = $this->mock(DateTimeImmutable::class);
@@ -39,6 +36,6 @@ class DirectFlightAirportsTest extends TestCase
 
         new DirectFlight(
             $referenceIDMock, $outboundAirport, $inboundAirport,
-            $departureDTMock, $arrivalDTMock, $seatMapMock, $airlineMock, $priceMock);
+            $departureDTMock, $arrivalDTMock, $airlineMock, $priceMock);
     }
 }
