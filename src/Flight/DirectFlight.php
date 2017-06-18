@@ -96,4 +96,9 @@ class DirectFlight implements Flight
     {
         return $this->arrivalDateTime > $directFlight->departureDateTime;
     }
+
+    public function getUnitPrice(): Price
+    {
+        return $this->unitPrice;
+    }
 }

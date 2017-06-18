@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Ticket;
 
 use Flight\Flight;
+use Flight\Price;
 use Ticket\Collection\Passengers;
 use Ticket\Exception\NoFlightsException;
 
@@ -27,5 +28,19 @@ class Ticket
 
         $this->flights = $flights;
         $this->passengers = $passengers;
+    }
+
+    public function totalPrice(): Price
+    {
+        $ticketPrice = null;
+        foreach ($this->flights as $flight)
+        {
+            $flightPrice = $flight->getUnitPrice();
+            $withPassengersPrice = $flightPrice->applyPassengers(...$this->passengers);
+
+            $ticketPrice = $withPassengersPrice->add($ticketPrice);
+        }
+
+        return $ticketPrice;
     }
 }

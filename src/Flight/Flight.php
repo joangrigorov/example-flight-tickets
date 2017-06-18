@@ -8,4 +8,6 @@ use DateInterval;
 interface Flight
 {
     public function duration(): DateInterval;
+
+    public function getUnitPrice(): Price;
 }

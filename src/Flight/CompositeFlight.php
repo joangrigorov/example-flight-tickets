@@ -57,4 +57,9 @@ class CompositeFlight implements Flight
 
         $this->directFlights[] = $directFlight;
     }
+
+    public function getUnitPrice(): Price
+    {
+        return $this->unitPrice;
+    }
 }
