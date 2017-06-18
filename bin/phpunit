@@ -1,4 +1,4 @@
 #!/bin/bash
 BASEDIR=$(dirname .)
 cd $BASEDIR
-docker run --rm --interactive --tty --volume $PWD:/app --user 1000 phpunit/phpunit -c phpunit.xml.dist $@
+docker run --rm --interactive --tty --volume $PWD:/app --user 1000 phpunit/phpunit:6.0.6 -c phpunit.xml.dist $@
