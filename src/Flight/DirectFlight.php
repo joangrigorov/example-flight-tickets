@@ -49,6 +49,11 @@ class DirectFlight implements Flight
      */
     private $airline;
 
+    /**
+     * @var Price
+     */
+    private $unitPrice;
+
     public function __construct(
         ReferenceID $referenceID,
         Airport $outboundAirport,
@@ -56,7 +61,8 @@ class DirectFlight implements Flight
         DateTimeInterface $departureDateTime,
         DateTimeInterface $arrivalDateTime,
         SeatMap $seatMap,
-        Airline $airline)
+        Airline $airline,
+        Price $unitPrice)
     {
         if ($inboundAirport->equals($outboundAirport)) {
             throw new SameAirportException('Outbound and inbound airports cannot be the same');
@@ -73,6 +79,7 @@ class DirectFlight implements Flight
         $this->arrivalDateTime = $arrivalDateTime;
         $this->seatMap = $seatMap;
         $this->airline = $airline;
+        $this->unitPrice = $unitPrice;
     }
 
     public function duration(): DateInterval

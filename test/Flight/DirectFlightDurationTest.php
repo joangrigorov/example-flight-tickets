@@ -24,18 +24,20 @@ class DirectFlightDurationTest extends TestCase
         /** @var Airport $airportMock */
         /** @var SeatMap $seatMapMock */
         /** @var Airline $airlineMock */
+        /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
         $airportMock = $this->mock(Airport::class);
         $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
+        $priceMock = $this->mock(Price::class);
 
         $timezone = new DateTimeZone('Europe/Sofia');
 
-        $departureDT = new DateTimeImmutable('2017-03-03T02:30:00', $timezone);
-        $arrivalDT = new DateTimeImmutable('2017-03-03T04:30:00', $timezone);
+        $departure = new DateTimeImmutable('2017-03-03T02:30:00', $timezone);
+        $arrival = new DateTimeImmutable('2017-03-03T04:30:00', $timezone);
 
         $flight = new DirectFlight(
-            $referenceIDMock, $airportMock, $airportMock, $departureDT, $arrivalDT, $seatMapMock, $airlineMock);
+            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $seatMapMock, $airlineMock, $priceMock);
 
         $actualInterval = $flight->duration();
 
@@ -53,16 +55,18 @@ class DirectFlightDurationTest extends TestCase
         /** @var Airport $airportMock */
         /** @var SeatMap $seatMapMock */
         /** @var Airline $airlineMock */
+        /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
         $airportMock = $this->mock(Airport::class);
         $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
+        $priceMock = $this->mock(Price::class);
 
-        $departureDT = new DateTimeImmutable('2017-03-03T02:30:00', new DateTimeZone('Europe/Amsterdam'));
-        $arrivalDT = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Sofia'));
+        $departure = new DateTimeImmutable('2017-03-03T02:30:00', new DateTimeZone('Europe/Amsterdam'));
+        $arrival = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Sofia'));
 
         $flight = new DirectFlight(
-            $referenceIDMock, $airportMock, $airportMock, $departureDT, $arrivalDT, $seatMapMock, $airlineMock);
+            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $seatMapMock, $airlineMock, $priceMock);
 
         $actualInterval = $flight->duration();
 
@@ -80,17 +84,19 @@ class DirectFlightDurationTest extends TestCase
         /** @var Airport $airportMock */
         /** @var SeatMap $seatMapMock */
         /** @var Airline $airlineMock */
+        /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
         $airportMock = $this->mock(Airport::class);
         $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
+        $priceMock = $this->mock(Price::class);
 
-        $departureDT = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Amsterdam'));
-        $arrivalDT = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Sofia'));
+        $departure = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Amsterdam'));
+        $arrival = new DateTimeImmutable('2017-03-03T04:30:00', new DateTimeZone('Europe/Sofia'));
 
         $this->expectException(DepartureArrivalException::class);
 
         new DirectFlight(
-            $referenceIDMock, $airportMock, $airportMock, $departureDT, $arrivalDT, $seatMapMock, $airlineMock);
+            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $seatMapMock, $airlineMock, $priceMock);
     }
 }

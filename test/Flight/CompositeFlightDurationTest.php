@@ -10,6 +10,7 @@ use DateTimeInterface;
 use DateTimeZone;
 use FastMockTrait;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
 
 class CompositeFlightDurationTest extends TestCase
 {
@@ -29,7 +30,7 @@ class CompositeFlightDurationTest extends TestCase
             new DateTimeImmutable('2017-01-01T05:30:00', $timezone)
         );
 
-        new CompositeFlight($initialFlight, $finalFlight);
+        new CompositeFlight($this->priceMock(), $initialFlight, $finalFlight);
     }
 
     public function testShouldReturnDurationOfFullFlight()
@@ -44,7 +45,7 @@ class CompositeFlightDurationTest extends TestCase
             new DateTimeImmutable('2017-01-01T07:30:00', $timezone)
         );
 
-        $fullFlight = new CompositeFlight($initialFlight, $finalFlight);
+        $fullFlight = new CompositeFlight($this->priceMock(), $initialFlight, $finalFlight);
 
         $actualInterval = $fullFlight->duration();
 
@@ -62,12 +63,22 @@ class CompositeFlightDurationTest extends TestCase
         /** @var Airport $airportMock */
         /** @var SeatMap $seatMapMock */
         /** @var Airline $airlineMock */
+        /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
         $airportMock = $this->mock(Airport::class);
         $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
+        $priceMock = $this->priceMock();
 
         return new DirectFlight(
-            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $seatMapMock, $airlineMock);
+            $referenceIDMock, $airportMock, $airportMock, $departure, $arrival, $seatMapMock, $airlineMock, $priceMock);
+    }
+
+    /**
+     * @return Price|PHPUnit_Framework_MockObject_MockObject
+     */
+    private function priceMock(): Price
+    {
+        return $this->mock(Price::class);
     }
 }

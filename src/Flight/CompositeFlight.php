@@ -12,13 +12,19 @@ class CompositeFlight implements Flight
      */
     private $directFlights = [];
 
-    public function __construct(DirectFlight ...$directFlights)
+    /**
+     * @var Price
+     */
+    private $unitPrice;
+
+    public function __construct(Price $unitPrice, DirectFlight ...$directFlights)
     {
         if (count($directFlights) <= 1) {
             throw new Exception\CompositeFlightException('Composite flight should have at least two direct flights');
         }
 
         $this->addDirectFlights(...$directFlights);
+        $this->unitPrice = $unitPrice;
     }
 
     public function duration(): DateInterval

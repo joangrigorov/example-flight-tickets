@@ -26,17 +26,19 @@ class DirectFlightAirportsTest extends TestCase
         /** @var Airline $airlineMock */
         /** @var DateTimeInterface $departureDTMock */
         /** @var DateTimeInterface $arrivalDTMock */
+        /** @var Price $priceMock */
         $referenceIDMock = $this->mock(ReferenceID::class);
         $seatMapMock = $this->mock(SeatMap::class);
         $airlineMock = $this->mock(Airline::class);
         $departureDTMock = $this->mock(DateTimeImmutable::class);
         $arrivalDTMock = $this->mock(DateTimeImmutable::class);
+        $priceMock = $this->mock(Price::class);
 
         $outboundAirport = new Airport('SOF');
         $inboundAirport = new Airport('SOF');
 
         new DirectFlight(
             $referenceIDMock, $outboundAirport, $inboundAirport,
-            $departureDTMock, $arrivalDTMock, $seatMapMock, $airlineMock);
+            $departureDTMock, $arrivalDTMock, $seatMapMock, $airlineMock, $priceMock);
     }
 }
